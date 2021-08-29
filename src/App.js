@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import {TaskCounter} from './components/TaskCounter';
+import {TaskSearch} from './components/TaskSearch';
+import {TaskList} from './components/TaskList';
+import {TaskItem} from './components/TaskItem';
+import {CreateTaskButton} from './components/CreateTaskButton';
 
-function App() 
-{
+const tareas = [
+  { id: 1, text: 'Lavar la ropa', completed: false },
+  { id: 2, text: 'Hacer la tarea', completed: false },
+  { id: 3, text: 'Ver los cursos', completed: false },
+  { id: 4, text: 'Esuchar Música', completed: false },
+];
+
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          React App
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <TaskCounter />
+      <TaskSearch />
+      <TaskList>
+        {
+          tareas.map(tarea => (
+            <TaskItem key={tarea.id} text={tarea.text} />
+          ))
+        }
+      </TaskList>
+      <CreateTaskButton />
+    </Fragment>
   );
 }
 
