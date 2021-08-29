@@ -3,7 +3,9 @@ import React, {Fragment} from 'react';
 function CreateTaskButton() {
     return(
         <Fragment>
-            <button>+</button>
+            <button className="create-task-button">
+                <i className="fas fa-plus"></i>
+            </button>
         </Fragment>
     );
 }
