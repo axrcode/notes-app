@@ -1,10 +1,24 @@
 import React, {Fragment} from 'react';
 
 function TaskItem( props ) {
+
+    const onComplete = () => 
+    {
+        alert('Completado: ' + props.text);
+    }
+
+    const onDelete = () => 
+    {
+        alert('Eliminado: ' + props.text);
+    }
+
     return(
         <Fragment>
             <li className="task-item">
-                <span className={`icon icon-check ${props.completed && 'icon-check-active'}`}>
+                <span 
+                    className={`icon icon-check ${props.completed && 'icon-check-active'}`}
+                    onClick={onComplete}
+                >
                     {
                         props.completed 
                         ? <i className="fas fa-check-circle"></i>
@@ -16,7 +30,10 @@ function TaskItem( props ) {
                     { props.text }
                 </p>
 
-                <span className="icon icon-delete">
+                <span 
+                    className="icon icon-delete"
+                    onClick={onDelete}
+                >
                     <i className="fas fa-trash"></i>
                 </span>
             </li>

@@ -64,7 +64,8 @@ body {
 }
 
 .task-search:focus {
-  outline-color: #ffffff;
+  outline: none;
+  background-color: var(--third);
 }
 
 ul {
