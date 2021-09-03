@@ -7,7 +7,7 @@ import {CreateTaskButton} from './components/CreateTaskButton';
 
 import './css/styles.css';
 
-const tareas = [
+const defaultTareas = [
   { id: 1, text: 'Lavar la ropa', completed: false },
   { id: 2, text: 'Hacer la tarea', completed: false },
   { id: 3, text: 'Ver los cursos', completed: true },
@@ -15,23 +15,72 @@ const tareas = [
 ];
 
 function App() {
+
+  /**
+   *  Declaración de los state para: 
+   *  - Obtener las tareas (tasks)
+   *  - Valor de busqueda (searchValue)
+   */
+  const [ tasks, setTasks ] = React.useState(defaultTareas);
+  const [ searchValue, setSearchValue ] = React.useState('');
+
+  /**
+   *  Variables para procesos utilizando el state: 
+   *  - Filtrar tasks completados
+   *  - Total de task almacenados
+   */
+  const completedTask = tasks.filter(task => !!task.completed).length;
+  const totalTask = tasks.length;
+
+  /**
+   *  Array vacio para ir filtrando los tasks que coincidan con la búsqueda.
+   *  Condición para saber si la valor de búsqueda esta vació o contiene datos
+   */
+  let searchedTasks = [];
+
+  if ( !searchValue.length > 0 ) {
+    searchedTasks = tasks;
+  } else { 
+    /**
+     *  Convierte el text de los tasks y el contenido del state de búsqueda en minúscula,
+     *  para forzar la coincidencia de los datos.
+     *  Verificar si el text del task contiene en algo del valor de búsqueda (return)
+     */
+    searchedTasks = tasks.filter(task => {
+      const taskText = task.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return taskText.includes(searchText);
+    });
+  } 
+
   return (
     <Fragment>
       <div className="container">
-        <TaskCounter />
-        <TaskSearch />
+
+        <TaskCounter 
+          completed={completedTask}
+          total={totalTask}
+        />
+
+        <TaskSearch 
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+        
         <TaskList>
           {
-            tareas.map(tarea => (
+            searchedTasks.map(task => (
               <TaskItem 
-                key={tarea.id} 
-                text={tarea.text} 
-                completed={tarea.completed}
+                key={task.id} 
+                text={task.text} 
+                completed={task.completed}
               />
             ))
           }
         </TaskList>
+
         <CreateTaskButton />
+        
       </div>
     </Fragment>
   );

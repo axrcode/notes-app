@@ -1,16 +1,18 @@
 import React, {Fragment} from 'react';
 
-function TaskSearch() {
+function TaskSearch({ searchValue, setSearchValue }) {
 
-    const [ searchValue, setSearchValue ] = React.useState('');
-
+    /**
+     *  Función para obtener el contenido ingresado por el usuario en el input.
+     *  Através de los props, conecta con el state del archivo App.js 
+     */
     const onSearchValueChanged = (msg) => 
     {
         console.log('Buscando: ' + msg.target.value);
         setSearchValue(msg.target.value);
     }
 
-    return(
+    return (
         <Fragment>
             <input 
                 className="task-search"
@@ -19,7 +21,6 @@ function TaskSearch() {
                 value={ searchValue }
                 onChange={ onSearchValueChanged } 
             />
-            <p>{ searchValue }</p>
         </Fragment>
     );
 }

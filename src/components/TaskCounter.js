@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react';
 
-function TaskCounter() {
+function TaskCounter( props ) {
     return(
         <Fragment>
             <h2 className="task-counter">
-                Has completado 2 de 3 tareas
+                Has completado { props.completed } de { props.total } tareas
             </h2>
         </Fragment>
     );
