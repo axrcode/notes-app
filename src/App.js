@@ -39,6 +39,9 @@ function App() {
   let searchedTasks = [];
 
   if ( !searchValue.length > 0 ) {
+    /**
+     *  Devuelve todas las tareas
+     */
     searchedTasks = tasks;
   } else { 
     /**
@@ -52,6 +55,22 @@ function App() {
       return taskText.includes(searchText);
     });
   } 
+
+  const completeTask = (id) => {
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    const newTasks = [...tasks];
+    //  Cambiar el valor de la propiedad completed de la tarea
+    newTasks[taskIndex].completed = true;
+    setTasks(newTasks);
+  }
+
+  const deleteTask = (id) => {
+    const taskIndex = tasks.findIndex(task => task.id === id);
+    const newTasks = [...tasks];
+    //  Eliminar el elemento seleccionado
+    newTasks.splice(taskIndex, 1);
+    setTasks(newTasks);
+  }
 
   return (
     <Fragment>
@@ -74,6 +93,8 @@ function App() {
                 key={task.id} 
                 text={task.text} 
                 completed={task.completed}
+                onComplete={() => completeTask(task.id)}
+                onDelete={() => deleteTask(task.id)}
               />
             ))
           }
