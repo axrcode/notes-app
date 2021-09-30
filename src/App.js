@@ -14,27 +14,44 @@ import './css/styles.css';
   { id: 4, text: 'Esuchar Música', completed: false },
 ]; */
 
-function App() {
-
+function useLocalStorage( itemName, initialValue ) {
+  
   //  CambiarLLamamos el item "Task_v1" de nuestro localStorage 
-  const localStorageTasks = localStorage.getItem('Task_v1');
+  const localStorageItem = localStorage.getItem( itemName);
   //  Variable que almacenará las tareas
-  let parsedTask;
+  let parsedItem;
 
-  if ( !localStorageTasks ) {
-    localStorage.setItem('Task_v1', JSON.stringify([]));
-    parsedTask = [];
+  if ( !localStorageItem ) {
+    localStorage.setItem( itemName, JSON.stringify( initialValue ) );
+    parsedItem = initialValue;
   } else {
-    parsedTask = JSON.parse( localStorageTasks );
+    parsedItem = JSON.parse( localStorageItem );
   }
+
+  const [ items, setItem ] = React.useState( parsedItem );
+
+  /**
+   * Funcción para poder modificar los valos en el localStorage
+   * - Se utiliza el item "Task_v1" para los valores
+   */
+  const saveChangeItem = ( newItem ) => {
+    const stringifiedItem = JSON.stringify( newItem );
+    localStorage.setItem( itemName, stringifiedItem );
+    setItem(newItem);
+  }
+
+  return [ items, saveChangeItem ];
+}
+
+function App() {
 
   /**
    *  Declaración de los state para: 
    *  - Obtener las tareas (tasks)
    *  - Valor de busqueda (searchValue)
    */
-  const [ tasks, setTasks ] = React.useState(parsedTask);
-  const [ searchValue, setSearchValue ] = React.useState('');
+  const [ tasks, saveChangeTasks ] =  useLocalStorage( 'Task_v1', [] );
+  const [ searchValue, setSearchValue ] = React.useState( '' );
 
   /**
    *  Variables para procesos utilizando el state: 
@@ -69,15 +86,9 @@ function App() {
   } 
 
   /**
-   * Funcción para poder modificar los valos en el localStorage
-   * - Se utiliza el item "Task_v1" para los valores
+   *  Operaciones para marcar como completada una tarea o eliminarla
+   *  - La función saveChangeTasks() se obtiene del Custom Hook 'useLocalStorage()'
    */
-  const saveChangeTasks = (newTasks) => {
-    const stringifiedTasks = JSON.stringify(newTasks);
-    localStorage.setItem('Task_v1', stringifiedTasks);
-    setTasks(newTasks);
-  }
-
   const completeTask = (id) => {
     const taskIndex = tasks.findIndex(task => task.id === id);
     const newTasks = [...tasks];
