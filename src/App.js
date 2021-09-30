@@ -7,21 +7,33 @@ import {CreateTaskButton} from './components/CreateTaskButton';
 
 import './css/styles.css';
 
-const defaultTareas = [
+/* const defaultTareas = [
   { id: 1, text: 'Lavar la ropa', completed: false },
   { id: 2, text: 'Hacer la tarea', completed: false },
   { id: 3, text: 'Ver los cursos', completed: true },
   { id: 4, text: 'Esuchar Música', completed: false },
-];
+]; */
 
 function App() {
+
+  //  CambiarLLamamos el item "Task_v1" de nuestro localStorage 
+  const localStorageTasks = localStorage.getItem('Task_v1');
+  //  Variable que almacenará las tareas
+  let parsedTask;
+
+  if ( !localStorageTasks ) {
+    localStorage.setItem('Task_v1', JSON.stringify([]));
+    parsedTask = [];
+  } else {
+    parsedTask = JSON.parse( localStorageTasks );
+  }
 
   /**
    *  Declaración de los state para: 
    *  - Obtener las tareas (tasks)
    *  - Valor de busqueda (searchValue)
    */
-  const [ tasks, setTasks ] = React.useState(defaultTareas);
+  const [ tasks, setTasks ] = React.useState(parsedTask);
   const [ searchValue, setSearchValue ] = React.useState('');
 
   /**
@@ -56,12 +68,22 @@ function App() {
     });
   } 
 
+  /**
+   * Funcción para poder modificar los valos en el localStorage
+   * - Se utiliza el item "Task_v1" para los valores
+   */
+  const saveChangeTasks = (newTasks) => {
+    const stringifiedTasks = JSON.stringify(newTasks);
+    localStorage.setItem('Task_v1', stringifiedTasks);
+    setTasks(newTasks);
+  }
+
   const completeTask = (id) => {
     const taskIndex = tasks.findIndex(task => task.id === id);
     const newTasks = [...tasks];
     //  Cambiar el valor de la propiedad completed de la tarea
     newTasks[taskIndex].completed = true;
-    setTasks(newTasks);
+    saveChangeTasks(newTasks);
   }
 
   const deleteTask = (id) => {
@@ -69,7 +91,7 @@ function App() {
     const newTasks = [...tasks];
     //  Eliminar el elemento seleccionado
     newTasks.splice(taskIndex, 1);
-    setTasks(newTasks);
+    saveChangeTasks(newTasks);
   }
 
   return (
