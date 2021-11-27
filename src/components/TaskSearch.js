@@ -15,7 +15,7 @@ function TaskSearch({ searchValue, setSearchValue }) {
     return (
         <Fragment>
             <input 
-                className="task-search"
+                className="form-control"
                 type="search" 
                 placeholder="Hacer la cena" 
                 value={ searchValue }

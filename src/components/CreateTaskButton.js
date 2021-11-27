@@ -10,7 +10,7 @@ function CreateTaskButton() {
     return(
         <Fragment>
             <button 
-                className="create-task-button"
+                className="create-task-button bg-primary"
                 onClick={ () => onClickButton('Abrir Modal') }
             >    
                 <i className="fas fa-plus"></i>
