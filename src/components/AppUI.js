@@ -6,6 +6,7 @@ import { TaskCounter } from './TaskCounter';
 import { TaskSearch } from './TaskSearch';
 import { TaskList } from './TaskList';
 import { TaskItem } from './TaskItem';
+import { TaskForm } from './TaskForm';
 import { CreateTaskButton } from './CreateTaskButton';
 
 import { Modal } from './Modal';
@@ -37,11 +38,11 @@ function AppUI() {
                     {
                         searchedTasks.map(task => (
                             <TaskItem 
-                            key={task.id} 
+                            key={task.text} 
                             text={task.text} 
                             completed={task.completed}
-                            onComplete={() => completeTask(task.id)}
-                            onDelete={() => deleteTask(task.id)}
+                            onComplete={() => completeTask(task.text)}
+                            onDelete={() => deleteTask(task.text)}
                             />
                         ))
                     }
@@ -49,7 +50,7 @@ function AppUI() {
 
                 { !!openModal && (
                     <Modal>
-                        <p>JDASHDKASJDHASKLJH</p>
+                        <TaskForm />
                     </Modal>
                 ) }
 

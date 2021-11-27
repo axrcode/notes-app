@@ -7,7 +7,7 @@ function TaskCounter() {
 
     return(
         <Fragment>
-            <h2 className="task-counter text-center mx-5 px-5 mb-5">
+            <h2 className="task-counter text-center">
                 Has completado { completedTask } de { totalTasks } tareas
             </h2>
         </Fragment>

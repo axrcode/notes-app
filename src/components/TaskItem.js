@@ -4,7 +4,7 @@ function TaskItem( props ) {
 
     return(
         <Fragment>
-            <li className="task-item">
+            <li className="task-item bg-light text-dark">
                 <span 
                     className={`icon icon-check ${props.completed && 'icon-check-active'}`}
                     onClick={props.onComplete}

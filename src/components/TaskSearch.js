@@ -18,9 +18,9 @@ function TaskSearch() {
     return (
         <Fragment>
             <input 
-                className="form-control"
+                className="form-control form-control-lg" 
                 type="search" 
-                placeholder="Hacer la cena" 
+                placeholder="Buscar una tarea..." 
                 value={ searchValue }
                 onChange={ onSearchValueChanged } 
             />

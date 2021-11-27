@@ -56,16 +56,26 @@ function TaskProvider(props) {
      *  Operaciones para marcar como completada una tarea o eliminarla
      *  - La función saveChangeTasks() se obtiene del Custom Hook 'useLocalStorage()'
      */
-    const completeTask = (id) => {
-        const taskIndex = tasks.findIndex(task => task.id === id);
+    const addTask = (text) => {
+        const newTasks = [...tasks];
+        //  Crear una nueva tarea
+        newTasks.push({
+            completed: false,
+            text,
+        });
+        saveChangeTasks(newTasks);
+    }
+
+    const completeTask = (text) => {
+        const taskIndex = tasks.findIndex(task => task.text === text);
         const newTasks = [...tasks];
         //  Cambiar el valor de la propiedad completed de la tarea
         newTasks[taskIndex].completed = true;
         saveChangeTasks(newTasks);
     }
 
-    const deleteTask = (id) => {
-        const taskIndex = tasks.findIndex(task => task.id === id);
+    const deleteTask = (text) => {
+        const taskIndex = tasks.findIndex(task => task.text === text);
         const newTasks = [...tasks];
         //  Eliminar el elemento seleccionado
         newTasks.splice(taskIndex, 1);
@@ -81,6 +91,7 @@ function TaskProvider(props) {
             searchValue,
             setSearchValue,
             searchedTasks,
+            addTask,
             completeTask,
             deleteTask,
             openModal,
