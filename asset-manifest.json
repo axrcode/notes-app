@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/axrcode.github.io/task-app/static/css/main.397db7ba.chunk.css",
+    "main.js": "/axrcode.github.io/task-app/static/js/main.c857959c.chunk.js",
+    "main.js.map": "/axrcode.github.io/task-app/static/js/main.c857959c.chunk.js.map",
+    "runtime-main.js": "/axrcode.github.io/task-app/static/js/runtime-main.45fb1856.js",
+    "runtime-main.js.map": "/axrcode.github.io/task-app/static/js/runtime-main.45fb1856.js.map",
+    "static/js/2.522d8a2f.chunk.js": "/axrcode.github.io/task-app/static/js/2.522d8a2f.chunk.js",
+    "static/js/2.522d8a2f.chunk.js.map": "/axrcode.github.io/task-app/static/js/2.522d8a2f.chunk.js.map",
+    "index.html": "/axrcode.github.io/task-app/index.html",
+    "static/css/main.397db7ba.chunk.css.map": "/axrcode.github.io/task-app/static/css/main.397db7ba.chunk.css.map",
+    "static/js/2.522d8a2f.chunk.js.LICENSE.txt": "/axrcode.github.io/task-app/static/js/2.522d8a2f.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/axrcode.github.io/task-app/static/media/background.d6fb29bc.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.45fb1856.js",
+    "static/js/2.522d8a2f.chunk.js",
+    "static/css/main.397db7ba.chunk.css",
+    "static/js/main.c857959c.chunk.js"
+  ]
+}
