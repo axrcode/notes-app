@@ -1,6 +1,9 @@
 import React, {Fragment} from 'react';
+import { TaskContext } from './TaskContext';
 
-function TaskSearch({ searchValue, setSearchValue }) {
+function TaskSearch() {
+
+    const { searchValue, setSearchValue } = React.useContext(TaskContext);
 
     /**
      *  Función para obtener el contenido ingresado por el usuario en el input.

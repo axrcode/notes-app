@@ -24,7 +24,7 @@ function TaskProvider(props) {
      *  - Total de task almacenados
      */
     const completedTask = tasks.filter(task => !!task.completed).length;
-    const totalTask = tasks.length;
+    const totalTasks = tasks.length;
 
     /**
      *  Array vacio para ir filtrando los tasks que coincidan con la búsqueda.
@@ -74,8 +74,8 @@ function TaskProvider(props) {
         <TaskContext.Provider value={{
             loading,
             error,
-            totalTask,
-            completeTask,
+            totalTasks,
+            completedTask,
             searchValue,
             setSearchValue,
             searchedTasks,

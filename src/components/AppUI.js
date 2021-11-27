@@ -9,6 +9,15 @@ import { TaskItem } from './TaskItem';
 import { CreateTaskButton } from './CreateTaskButton';
 
 function AppUI() {
+
+    const {
+        error,
+        loading,
+        searchedTasks,
+        completeTask,
+        deleteTask,                 
+    } = React.useContext(TaskContext);
+
     return (
         <Fragment>
             <div className="container">
@@ -18,33 +27,23 @@ function AppUI() {
 
                         <TaskSearch />
 
-                        <TaskContext.Consumer>
-                            { ({
-                                error,
-                                loading,
-                                searchedTasks,
-                                completeTask,
-                                deleteTask,                 
-                            }) => (
-                                <TaskList>
-                                    { error && <p>Hubo un error...</p> }
-                                    { loading && <p>Estamos cargando...</p> }
-                                    { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
+                        <TaskList>
+                            { error && <p>Hubo un error...</p> }
+                            { loading && <p>Estamos cargando...</p> }
+                            { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
                         
-                                    {
-                                    searchedTasks.map(task => (
-                                        <TaskItem 
-                                        key={task.id} 
-                                        text={task.text} 
-                                        completed={task.completed}
-                                        onComplete={() => completeTask(task.id)}
-                                        onDelete={() => deleteTask(task.id)}
-                                        />
-                                    ))
-                                    }
-                                </TaskList>
-                            ) }
-                        </TaskContext.Consumer>
+                            {
+                                searchedTasks.map(task => (
+                                    <TaskItem 
+                                    key={task.id} 
+                                    text={task.text} 
+                                    completed={task.completed}
+                                    onComplete={() => completeTask(task.id)}
+                                    onDelete={() => deleteTask(task.id)}
+                                    />
+                                ))
+                            }
+                        </TaskList>
 
                         <CreateTaskButton />
                     </div>
