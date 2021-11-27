@@ -1,17 +1,20 @@
 import React, {Fragment} from 'react';
+import { TaskContext } from './TaskContext';
 
-function CreateTaskButton() {
+function CreateTaskButton(props) {
 
-    const onClickButton = (msg) => 
+    const { openModal } = React.useContext(TaskContext);
+
+    const onClickButton = () => 
     {
-        alert(msg);
+        props.setOpenModal( !openModal );
     };
 
     return(
         <Fragment>
             <button 
                 className="create-task-button bg-primary"
-                onClick={ () => onClickButton('Abrir Modal') }
+                onClick={ onClickButton }
             >    
                 <i className="fas fa-plus"></i>
             </button>

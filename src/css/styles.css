@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
     --primary: #000000;
     --secondary: #242424;
@@ -145,9 +151,24 @@ ul {
   width: 64px;
   transform: rotate(0);
   transition: .3s ease;
+  z-index: 2;
 }
 
 .create-task-button:hover {
   transform: rotate(224deg);
   outline: none;
+}
+
+.modal {
+  background: rgba(32,35,41,.8);
+  position: fixed;
+  /* top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 1;
 }

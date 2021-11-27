@@ -18,6 +18,8 @@ function TaskProvider(props) {
     } =  useLocalStorage( 'Task_v1', [] );
     const [ searchValue, setSearchValue ] = React.useState( '' );
 
+    const [ openModal, setOpenModal ] = React.useState(false);
+
     /**
      *  Variables para procesos utilizando el state: 
      *  - Filtrar tasks completados
@@ -81,6 +83,8 @@ function TaskProvider(props) {
             searchedTasks,
             completeTask,
             deleteTask,
+            openModal,
+            setOpenModal,
         }}>
             {props.children}
         </TaskContext.Provider>
