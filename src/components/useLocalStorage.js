@@ -30,7 +30,7 @@ function useLocalStorage( itemName, initialValue ) {
         }
   
       }, 1500);
-    }, []);
+    }, [itemName, initialValue]);
   
     /**
      * Función para poder modificar los valos en el localStorage
