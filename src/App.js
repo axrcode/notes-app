@@ -16,31 +16,51 @@ import './css/styles.css';
 
 function useLocalStorage( itemName, initialValue ) {
   
-  //  CambiarLLamamos el item "Task_v1" de nuestro localStorage 
-  const localStorageItem = localStorage.getItem( itemName);
-  //  Variable que almacenará las tareas
-  let parsedItem;
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(false);
 
-  if ( !localStorageItem ) {
-    localStorage.setItem( itemName, JSON.stringify( initialValue ) );
-    parsedItem = initialValue;
-  } else {
-    parsedItem = JSON.parse( localStorageItem );
-  }
+  const [ items, setItem ] = React.useState( initialValue );
 
-  const [ items, setItem ] = React.useState( parsedItem );
+  React.useEffect(() => {
+    setTimeout(() => {
+
+      try {
+        //  CambiarLLamamos el item "Task_v1" de nuestro localStorage 
+        const localStorageItem = localStorage.getItem( itemName);
+        //  Variable que almacenará las tareas
+        let parsedItem;
+
+        if ( !localStorageItem ) {
+          localStorage.setItem( itemName, JSON.stringify( initialValue ) );
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse( localStorageItem );
+        }
+
+        setItem(parsedItem);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+      }
+
+    }, 1500);
+  }, []);
 
   /**
-   * Funcción para poder modificar los valos en el localStorage
+   * Función para poder modificar los valos en el localStorage
    * - Se utiliza el item "Task_v1" para los valores
    */
   const saveChangeItem = ( newItem ) => {
-    const stringifiedItem = JSON.stringify( newItem );
-    localStorage.setItem( itemName, stringifiedItem );
-    setItem(newItem);
+    try {
+      const stringifiedItem = JSON.stringify( newItem );
+      localStorage.setItem( itemName, stringifiedItem );
+      setItem(newItem);
+    } catch (error) {
+      setError(error);
+    }
   }
 
-  return [ items, saveChangeItem ];
+  return { items, saveChangeItem, loading, error };
 }
 
 function App() {
@@ -50,7 +70,12 @@ function App() {
    *  - Obtener las tareas (tasks)
    *  - Valor de busqueda (searchValue)
    */
-  const [ tasks, saveChangeTasks ] =  useLocalStorage( 'Task_v1', [] );
+  const { 
+    items: tasks, 
+    saveChangeItem: saveChangeTasks, 
+    loading,
+    error
+  } =  useLocalStorage( 'Task_v1', [] );
   const [ searchValue, setSearchValue ] = React.useState( '' );
 
   /**
@@ -120,6 +145,10 @@ function App() {
         />
         
         <TaskList>
+          { error && <p>Hubo un error...</p> }
+          { loading && <p>Estamos cargando...</p> }
+          { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
+
           {
             searchedTasks.map(task => (
               <TaskItem 
