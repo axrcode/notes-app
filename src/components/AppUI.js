@@ -21,33 +21,29 @@ function AppUI() {
     return (
         <Fragment>
             <div className="container">
-                <div className="row mt-5">
-                    <div className="col-md-6 mx-md-auto text-white mt-5">
-                        <TaskCounter />
+                <TaskCounter />
 
-                        <TaskSearch />
+                <TaskSearch />
 
-                        <TaskList>
-                            { error && <p>Hubo un error...</p> }
-                            { loading && <p>Estamos cargando...</p> }
-                            { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
-                        
-                            {
-                                searchedTasks.map(task => (
-                                    <TaskItem 
-                                    key={task.id} 
-                                    text={task.text} 
-                                    completed={task.completed}
-                                    onComplete={() => completeTask(task.id)}
-                                    onDelete={() => deleteTask(task.id)}
-                                    />
-                                ))
-                            }
-                        </TaskList>
+                <TaskList>
+                    { error && <p>Hubo un error...</p> }
+                    { loading && <p>Estamos cargando...</p> }
+                    { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
+                
+                    {
+                        searchedTasks.map(task => (
+                            <TaskItem 
+                            key={task.id} 
+                            text={task.text} 
+                            completed={task.completed}
+                            onComplete={() => completeTask(task.id)}
+                            onDelete={() => deleteTask(task.id)}
+                            />
+                        ))
+                    }
+                </TaskList>
 
-                        <CreateTaskButton />
-                    </div>
-                </div>
+                <CreateTaskButton />
             </div>
         </Fragment>
     );
