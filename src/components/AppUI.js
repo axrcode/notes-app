@@ -10,6 +10,7 @@ import { TaskForm } from './TaskForm';
 import { CreateTaskButton } from './CreateTaskButton';
 
 import { Modal } from './Modal';
+import Footer from './Footer';
 
 function AppUI() {
 
@@ -28,7 +29,7 @@ function AppUI() {
 
     return (
         <Fragment>
-            <div className="container py-15 md:py-20">
+            <div className="container pt-10 pb-24 md:pt-20 px-5">
                 
                 <img 
                     src={logo} 
@@ -69,17 +70,11 @@ function AppUI() {
                     setOpenModal={setOpenModal}
                 />
             </div>
-            <footer className="bg-gray-800 flex items-center justify-center py-5">
-                <h2>
-                    {'< '} 
-                    Desarrollado por {''} 
-                    <a  href={portafolio} target="_blank" rel="noreferrer"
-                        className="font-bold">
-                        Axel Castillo
-                    </a>
-                    {' />'}
-                </h2>
-            </footer>
+            
+            <Footer 
+                portafolio={portafolio}
+            />
+
         </Fragment>
     );
 }
