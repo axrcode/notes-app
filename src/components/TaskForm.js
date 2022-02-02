@@ -25,35 +25,36 @@ function TaskForm() {
     };
 
     return (
-        <div className="row w-100">
-            <div className="col-md-4 offset-md-4">
+        <div className="md:flex justify-center">
+            <div className="md:w-1/2 lg:w-2/5 px-5 md:px-0">
                 <form onSubmit={onSubmit}>
-                    <div class="card bg-light text-dark">
-                        <div class="card-body">
+                    <div className="bg-gray-800 mt-40 px-6 py-10 md:p-10 shadow-lg rounded-sm">
+                        <div className="card-body">
 
-                            <div class="form-group">
-                                <label className="font-weight-bold">Ingresa una nueva tarea</label>
+                            <div className="space-y-4">
+                                <label className="font-bold uppercase block">Ingresa una nueva tarea</label>
                                 <textarea 
                                     value={newTaskValue}
                                     onChange={onChange}
-                                    class="form-control"
+                                    className="bg-gray-700 w-full p-2 px-4 mt-2 placeholder-gray-500 text-xl rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-80"
+                                    placeholder="Limpiar el jardín..."
                                     rows="3"
                                 ></textarea>
                             </div>
 
-                            <div className="row mt-5">
-                                <div className="col-6 pr-1">
+                            <div className="flex mt-5">
+                                <div className="w-1/2 pr-1">
                                     <button
-                                        className="btn btn-white btn-block btn-sm pr-0"
+                                        className="w-full p-2 text-white rounded-sm uppercase font-bold hover:bg-gray-700 cursor-pointer transition-all"
                                         type="button"
                                         onClick={onCancel}
                                     >
                                         Cancelar
                                     </button>
                                 </div>
-                                <div className="col-6 pl-1">
+                                <div className="w-1/2 pl-1">
                                     <button
-                                        className="btn btn-success btn-block btn-sm pl-0"
+                                        className="bg-blue-600 w-full p-2 text-white rounded-sm uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
                                         type="submit"
                                     >
                                         Crear

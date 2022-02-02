@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { TaskContext } from './TaskContext';
 
 function TaskSearch() {
@@ -16,15 +16,17 @@ function TaskSearch() {
     }
 
     return (
-        <Fragment>
-            <input 
-                className="form-control form-control-lg" 
-                type="search" 
-                placeholder="Buscar una tarea..." 
-                value={ searchValue }
-                onChange={ onSearchValueChanged } 
-            />
-        </Fragment>
+        <div className="md:flex justify-center">
+            <div className="md:w-1/2 lg:w-2/5">
+                <input 
+                    className="bg-gray-800 w-full p-2 px-4 mt-2 placeholder-gray-500 text-xl rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-800" 
+                    type="search" 
+                    placeholder="Buscar una tarea..." 
+                    value={ searchValue }
+                    onChange={ onSearchValueChanged } 
+                />
+            </div>
+        </div>
     );
 }
 

@@ -13,6 +13,8 @@ import { Modal } from './Modal';
 
 function AppUI() {
 
+    const logo = 'https://axrcode.github.io/static/media/logo-axrcode.13e5db17.png';
+
     const {
         error,
         loading,
@@ -25,7 +27,15 @@ function AppUI() {
 
     return (
         <Fragment>
-            <div className="container">
+            <div className="container pt-12 md:pt-8">
+                
+                <img 
+                    src={logo} 
+                    width="150" 
+                    className="mx-auto"
+                    alt="Logo AXRCODE"
+                />
+
                 <TaskCounter />
 
                 <TaskSearch />
@@ -38,11 +48,11 @@ function AppUI() {
                     {
                         searchedTasks.map(task => (
                             <TaskItem 
-                            key={task.text} 
-                            text={task.text} 
-                            completed={task.completed}
-                            onComplete={() => completeTask(task.text)}
-                            onDelete={() => deleteTask(task.text)}
+                                key={task.text} 
+                                text={task.text} 
+                                completed={task.completed}
+                                onComplete={() => completeTask(task.text)}
+                                onDelete={() => deleteTask(task.text)}
                             />
                         ))
                     }
