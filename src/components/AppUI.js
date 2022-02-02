@@ -13,7 +13,8 @@ import { Modal } from './Modal';
 
 function AppUI() {
 
-    const logo = 'https://axrcode.github.io/static/media/logo-axrcode.13e5db17.png';
+    const portafolio = 'https://axrcode.github.io/'
+    const logo = portafolio + 'static/media/logo-axrcode.13e5db17.png'
 
     const {
         error,
@@ -27,7 +28,7 @@ function AppUI() {
 
     return (
         <Fragment>
-            <div className="container pt-12 md:pt-8">
+            <div className="container py-15 md:py-20">
                 
                 <img 
                     src={logo} 
@@ -68,6 +69,17 @@ function AppUI() {
                     setOpenModal={setOpenModal}
                 />
             </div>
+            <footer className="bg-gray-800 flex items-center justify-center py-5">
+                <h2>
+                    {'< '} 
+                    Desarrollado por {''} 
+                    <a  href={portafolio} target="_blank" rel="noreferrer"
+                        className="font-bold">
+                        Axel Castillo
+                    </a>
+                    {' />'}
+                </h2>
+            </footer>
         </Fragment>
     );
 }
