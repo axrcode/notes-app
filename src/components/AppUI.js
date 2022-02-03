@@ -11,6 +11,9 @@ import { CreateTaskButton } from './CreateTaskButton';
 
 import { Modal } from './Modal';
 import Footer from './Footer';
+import FirstTask from './FirstTask';
+import Loading from './Loading';
+import TaskNotFound from './TaskNotFound';
 
 function AppUI() {
 
@@ -24,7 +27,8 @@ function AppUI() {
         completeTask,
         deleteTask, 
         openModal,
-        setOpenModal,                
+        setOpenModal,  
+        tasks,              
     } = React.useContext(TaskContext);
 
     return (
@@ -44,19 +48,32 @@ function AppUI() {
 
                 <TaskList>
                     { error && <p>Hubo un error...</p> }
-                    { loading && <p>Estamos cargando...</p> }
-                    { (!loading && !searchedTasks.length) && <p>Crear primer tarea...</p> }
+                    { loading && 
+                        <>
+                            <Loading />  
+                            <Loading />
+                        </> 
+                    }
+                    { (!loading && !searchedTasks.length && !tasks.length) && 
+                        <FirstTask setOpenModal={setOpenModal} />
+                    }
                 
                     {
-                        searchedTasks.map(task => (
-                            <TaskItem 
-                                key={task.text} 
-                                text={task.text} 
-                                completed={task.completed}
-                                onComplete={() => completeTask(task.text)}
-                                onDelete={() => deleteTask(task.text)}
-                            />
-                        ))
+                        (!loading && searchedTasks.length > 0) &&
+                            searchedTasks.map(task => (
+                                <TaskItem 
+                                    key={task.text} 
+                                    text={task.text} 
+                                    completed={task.completed}
+                                    onComplete={() => completeTask(task.text)}
+                                    onDelete={() => deleteTask(task.text)}
+                                />
+                            ))
+                    }
+
+                    { 
+                        (!loading && !searchedTasks.length && tasks.length>0) &&
+                            <TaskNotFound />
                     }
                 </TaskList>
 

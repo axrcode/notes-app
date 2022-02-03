@@ -11,7 +11,6 @@ function TaskSearch() {
      */
     const onSearchValueChanged = (msg) => 
     {
-        console.log('Buscando: ' + msg.target.value);
         setSearchValue(msg.target.value);
     }
 

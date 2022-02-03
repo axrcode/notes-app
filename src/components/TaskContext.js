@@ -96,6 +96,7 @@ function TaskProvider(props) {
             deleteTask,
             openModal,
             setOpenModal,
+            tasks
         }}>
             {props.children}
         </TaskContext.Provider>
