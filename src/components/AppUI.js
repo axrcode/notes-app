@@ -33,7 +33,7 @@ function AppUI() {
 
     return (
         <Fragment>
-            <div className="container pt-10 pb-24 md:pt-20 px-5">
+            <div className="container pt-10 pb-48 md:pt-20 md:pb-36 px-5">
                 
                 <img 
                     src={logo} 
